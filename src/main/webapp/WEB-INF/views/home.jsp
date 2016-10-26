@@ -9,7 +9,7 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}.gg </P>
+<P>  The time on the server is ${serverTime}. </P>
 <h2>${result }</h2>
 </body>
 </html>
