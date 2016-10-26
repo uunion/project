@@ -9,7 +9,7 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}.ggg </P>
+<P>  The time on theasddsdsasdasd자자자자자~~ㅁㄴㅇㄴㅁㅇㄴㅁ 고정근고정근문성원server is ${serverTime}. </P>
 <h2>${result }</h2>
 </body>
 </html>
