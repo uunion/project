@@ -9,7 +9,7 @@
 	Hello world!  
 </h1>
 
-<P>  The time on theasddsdsasdasd server is ${serverTime}. </P>
+<P>  The time on theasddsdsasdasd자자자자자~~ server is ${serverTime}. </P>
 <h2>${result }</h2>
 </body>
 </html>
