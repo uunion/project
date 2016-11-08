@@ -4,18 +4,18 @@ import java.util.Date;
 
 public class ReplyDto {
 
-	private Integer	rbno;
+	private Integer	rno;
 	private Integer nbno;
 	private String	rcontent;
 	private String	rwriter;
 	
 	private Date	rregdate;
 	private Date	updatedate;
-	public Integer getRbno() {
-		return rbno;
+	public Integer getRno() {
+		return rno;
 	}
-	public void setRbno(Integer rbno) {
-		this.rbno = rbno;
+	public void setRno(Integer rno) {
+		this.rno = rno;
 	}
 	public Integer getNbno() {
 		return nbno;
@@ -49,7 +49,7 @@ public class ReplyDto {
 	}
 	@Override
 	public String toString() {
-		return "ReplyVO [rbno=" + rbno + ", nbno=" + nbno + ", rcontent=" + rcontent + ", rwriter=" + rwriter
+		return "ReplyVO [rno=" + rno + ", nbno=" + nbno + ", rcontent=" + rcontent + ", rwriter=" + rwriter
 				+ ", rregdate=" + rregdate + ", updatedate=" + updatedate + "]";
 	}
 	

@@ -8,19 +8,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kedu.project.dto.Criteria;
+
+
 import com.kedu.project.dto.ReplyDto;
 import com.kedu.project.dao.NoticeDao;
+
 import com.kedu.project.dao.ReplyDao;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
+
 
 	@Inject
 	private ReplyDao replyDao;
 	
 	@Inject
 	private NoticeDao noticeDao;
-	
+// 공지쪽
 	@Transactional
 	@Override
 	public void addReply(ReplyDto dto) throws Exception {
@@ -40,9 +44,9 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Transactional
 	@Override
-	public void removeReply(Integer rbno) throws Exception {
-		int nbno = replyDao.getNbno(rbno);
-		replyDao.delete(rbno);
+	public void removeReply(Integer rno) throws Exception {
+		int nbno = replyDao.getNbno(rno);
+		replyDao.delete(rno);
 		noticeDao.updateNreplyCnt(nbno, -1);
 	}
 	
@@ -55,5 +59,6 @@ public class ReplyServiceImpl implements ReplyService {
 	public int count(Integer nbno) throws Exception {
 		return replyDao.count(nbno);
 	}
+	
 
 }

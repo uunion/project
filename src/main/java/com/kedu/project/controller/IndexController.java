@@ -20,7 +20,7 @@ public class IndexController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = {RequestMethod.GET, RequestMethod.POST})
 	public String home(Locale locale, Model model) {
 		
 		logger.info("Welcome home! The client locale is {}.", locale);

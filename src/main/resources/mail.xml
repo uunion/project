@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<!-- Mail Properties (Protocol, Port...) -->
+	<bean id="mailProp" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:mail.properties" />
+	</bean>
+	
+	<!-- 메일 관련 환경설정 bean 등록 (maipProp 사용) -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="protocol" value="${mail.protocol}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		
+		<property name="javaMailProperties">
+			<props>
+            	<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+            	<prop key="mail.smtp.debug">${mail.smtp.debug}</prop>
+            	<prop key="mail.smtp.ssl.enable">${mail.smtp.ssl.enable}</prop>
+        	</props>
+		</property>
+		
+	</bean>
+	
+	<!-- 메일 발송 bean 등록 -->
+	<bean id="mimeMail" class="com.qtcm.daon.member.member.service.SendMimeMailService">
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+
+</beans>

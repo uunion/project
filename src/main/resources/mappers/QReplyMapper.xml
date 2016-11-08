@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.kedu.project.mapper.QReplyMapper">
+
+	<select id="list" resultType="QReplyDto">
+		select
+		*
+		from
+		reply
+		where qbno = #{qbno}
+		order by rno desc
+	</select>
+	
+	<insert id="insert">
+		insert into reply (qbno, rcontent, rwriter)
+		values(#{qbno}, #{rcontent}, #{rwriter})
+	</insert>
+	
+	<update id="update">
+		update reply set rcontent = #{rcontent}
+		where rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		delete from	reply
+		where	rno = #{rno}
+	</delete>
+	
+	<select id="listPage" resultType="QReplyDto">
+		select
+		*
+		from
+		reply
+		where
+		qbno = #{qbno}
+		order by rno desc
+		limit #{cri.pageStart} , #{cri.perPageNum}
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(qbno) from reply where qbno = #{qbno}
+	</select>
+	
+	<select id="getQBno" resultType="int">
+		select	qbno
+		from	reply
+		where	rno = #{rno}
+	</select>
+</mapper>

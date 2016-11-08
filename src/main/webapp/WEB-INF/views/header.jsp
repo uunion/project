@@ -6,6 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+
+</script>
+
 </head>
 <body>
   <!-- Navigation -->
@@ -231,9 +236,17 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i>
+                   
+                   
+                   
                         
                         
-                          ${login.name}
+                  <c:if test="${login == null }">    
+                                         비회원
+                  </c:if>        
+                     
+                   <c:if test="${login != null }">
+                          ${login.name} 
                          <c:if test="${ login.admin == 1 }">
 							<td>(관리자)</td>
 						</c:if>
@@ -241,7 +254,7 @@
 						<c:if test="${login.admin == 0 }">
 							<td>(회원)</td>
 						</c:if> 
-                      
+                  </c:if>    
                         
                        </a>
                         </li>
@@ -261,13 +274,17 @@
                        </c:if>
                        
                        
-                        
+                          <c:if test ="${login != null}">
+                        <li><a href="/admin/memberDetail?mno=${login.mno}"><i class="fa fa-gear fa-fw"></i>정보수정</a>
+                        </li>
+                        	</c:if>
                     
                         
                         
-                       
+                          <c:if test ="${login == null}">
                         <li><a href="/join"><i class="fa fa-gear fa-fw"></i>회원가입</a>
                         </li>
+                        	</c:if>
                         
                         
                        

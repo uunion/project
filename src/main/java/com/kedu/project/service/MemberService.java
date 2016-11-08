@@ -14,5 +14,11 @@ public interface MemberService {
 	public MemberDto checkLoginBefore(String value);
 	
 	public void join(MemberDto dto) throws Exception;
+	
+	public MemberDto read(int mno) throws Exception;
+	
+	public void update(MemberDto dto) throws Exception;
+	
+	public void delete(int mno) throws Exception;
 
 }

@@ -22,7 +22,7 @@ import com.kedu.project.dto.SearchCriteria;
 import com.kedu.project.service.NoticeService;
 
 @Controller
-@RequestMapping("/snotice/*")
+@RequestMapping("/notice/*")
 public class SearchNoticeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SearchNoticeController.class);
@@ -62,7 +62,7 @@ public class SearchNoticeController {
 		
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
-		return "redirect:/snotice/list";
+		return "redirect:/notice/list";
 	}
 	
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
@@ -84,7 +84,7 @@ public class SearchNoticeController {
 		
 		logger.info(rttr.toString());
 		
-		return "redirect:/snotice/list";
+		return "redirect:/notice/list";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -101,7 +101,7 @@ public class SearchNoticeController {
 		
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
-		return "redirect:/snotice/list";
+		return "redirect:/notice/list";
 	}
 	
 	@RequestMapping("/getAttach/{nbno}")

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kedu.project.HomeController;
+import com.kedu.project.dto.MemberDto;
 
 @Controller
 public class MapController {
@@ -18,10 +19,7 @@ public class MapController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/ex1", method = RequestMethod.GET)
+	@RequestMapping(value = "/ex1", method =RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -30,4 +28,6 @@ public class MapController {
 	
 		return "ex1";
 	}
+	
+
 }

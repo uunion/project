@@ -48,5 +48,20 @@ public class MemberDaoImpl implements MemberDao {
 	public void join(MemberDto dto) throws Exception {
 		session.insert(namespace+".join", dto);
 	}
+	
+	@Override
+	public MemberDto read(int mno) throws Exception {
+		return session.selectOne(namespace+".read", mno);
+	}
+	
+	@Override
+	public void update(MemberDto dto) throws Exception {
+		session.update(namespace +".update", dto);
+	}
+	
+	@Override
+	public void delete(int mno) throws Exception {
+		session.delete(namespace+".delete", mno);
+	}
 
 }

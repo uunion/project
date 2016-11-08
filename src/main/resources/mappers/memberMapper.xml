@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="login" resultType="MemberDto">
 	
-	select memberid, pwd, name, email, admin, birth, phone, addr from member where memberid = #{memberid} and pwd = #{pwd}
+	select mno, memberid, pwd, name, email, admin, birth, phone, addr, deaddr from member where memberid = #{memberid} and pwd = #{pwd}
 	
 	</select>
 	
@@ -20,8 +20,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="join">
-	insert into member (memberid, pwd, name, email, admin, phone, addr)
-	values (#{memberid}, #{pwd}, #{name}, #{email}, #{admin}, #{phone}, #{addr})
+	insert into member (memberid, pwd, name, email, admin, phone, birth, addr, deaddr)
+	values (#{memberid}, #{pwd}, #{name}, #{email}, #{admin}, #{phone}, #{birth}, #{addr}, #{deaddr})
 	
 	</insert>
+	
+	<select id="read" resultType="com.kedu.project.dto.MemberDto">
+	select
+		mno, memberid, pwd, name, email, admin, phone, birth, addr, deaddr
+		from
+		member
+		where mno = #{mno}
+	
+	</select>
+	
+	<update id="update">
+	update member set pwd = #{pwd}, name = #{name}, email = #{email},  birth = #{birth}, phone = #{phone}, addr = #{addr}, deaddr = #{deaddr}
+	where mno = #{mno}
+	</update>
+	
+	<delete id="delete">
+	delete from member where mno = #{mno}
+	</delete>
 </mapper>

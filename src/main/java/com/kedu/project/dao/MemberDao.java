@@ -13,7 +13,13 @@ public interface MemberDao {
 	
 	public MemberDto checkUserWithSessionKey(String value);
 	
-	//가입
+	//가입, 수정, 삭제
 	public void join(MemberDto dto) throws Exception;
+	
+	public MemberDto read(int mno) throws Exception;
+	
+	public void update(MemberDto dto) throws Exception;
+	
+	public void delete(int mno) throws Exception;
 	
 }

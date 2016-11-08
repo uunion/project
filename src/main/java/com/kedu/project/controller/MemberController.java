@@ -79,4 +79,7 @@ public class MemberController {
 	}
 		return "member/logout";
 	}
+	
+
+	
 }

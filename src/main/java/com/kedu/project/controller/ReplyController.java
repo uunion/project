@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kedu.project.dto.Criteria;
 import com.kedu.project.dto.PageMaker;
+
+
 import com.kedu.project.dto.ReplyDto;
 import com.kedu.project.service.ReplyService;
 
@@ -25,7 +27,7 @@ public class ReplyController {
 	
 	@Inject
 	private ReplyService service;
-	
+//	공지 댓글 등록
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyDto dto) {
 		ResponseEntity<String> entity = null;
@@ -38,7 +40,8 @@ public class ReplyController {
 		}
 		return entity;
 	}
-	
+
+//	공지 댓글 리스트
 	@RequestMapping(value = "/all/{nbno}", method= RequestMethod.GET)
 	public ResponseEntity<List<ReplyDto>> list(@PathVariable("nbno") Integer nbno) {
 		ResponseEntity<List<ReplyDto>> entity = null;
@@ -50,12 +53,14 @@ public class ReplyController {
 		}
 		return entity;
 	}
-	
-	@RequestMapping(value = "/{rbno}", method = {RequestMethod.PUT, RequestMethod.PATCH})
-	public ResponseEntity<String> update(@PathVariable("rbno") Integer rbno, @RequestBody ReplyDto dto) {
+
+
+//	공지 댓글 업뎃
+	@RequestMapping(value = "/{rno}", method = {RequestMethod.PUT, RequestMethod.PATCH})
+	public ResponseEntity<String> update(@PathVariable("rno") Integer rno, @RequestBody ReplyDto dto) {
 		ResponseEntity<String> entity = null;
 		try {
-			dto.setRbno(rbno);
+			dto.setRno(rno);
 			service.modifyReply(dto);
 			
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
@@ -65,14 +70,16 @@ public class ReplyController {
 		}
 		return entity;
 	}
-	
-	@RequestMapping(value = "/{rbno}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> remove(@PathVariable("rbno") Integer rbno) {
+
+
+//	공지 삭제문
+	@RequestMapping(value = "/{rno}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> remove(@PathVariable("rno") Integer rno) {
 		
 		ResponseEntity<String> entity = null;
 		
 		try {
-			service.removeReply(rbno);
+			service.removeReply(rno);
 			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +87,9 @@ public class ReplyController {
 		}
 		return entity;
 	}
-	
+
+
+//	공지 댓글 페이징
 	@RequestMapping(value = "/{nbno}/{page}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listPage(
 			@PathVariable("nbno") Integer nbno, 
@@ -110,5 +119,7 @@ public class ReplyController {
 		}
 		return entity;
 	}
+
+
 	
 }

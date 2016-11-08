@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
 
 <head>
-
+	
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,22 +37,26 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
 
 </head>
 
 <body>
+
+
+
 
     <div id="wrapper">
 			<!-- 161027 방덕기 헤더파일 작성-->
       		<%@include file="header.jsp"%>
       		<%@include file="sidebar.jsp"%>
 
-
+	
 		<!-- 메인화면 -->
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">홈페이지 이름 정합시다</h1>
+                    <h1 class="page-header">홈페이지 이름 정합시다 </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -79,8 +86,8 @@
                         </a>
                     </div>
                 </div>
-                
-                
+		
+
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -130,7 +137,7 @@
                     </div>
                 </div>
                 
-                
+
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
@@ -153,7 +160,8 @@
                         </a>
                     </div>
                 </div>
-        
+                
+           
                 
                 
                 

@@ -33,98 +33,18 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
-    
-<script type="text/javascript">
-
-// This is called with the results from from FB.getLoginStatus().
-function statusChangeCallback(response) {
-  console.log('statusChangeCallback');
-  console.log(response);
-  // The response object is returned with a status field that lets the
-  // app know the current login status of the person.
-  // Full docs on the response object can be found in the documentation
-  // for FB.getLoginStatus().
-  if (response.status === 'connected') {
-    // Logged into your app and Facebook.
-    testAPI();
-  } else if (response.status === 'not_authorized') {
-    // The person is logged into Facebook, but not your app.
-    document.getElementById('status').innerHTML = 'Please log ' +
-      'into this app.';
-  } else {
-    // The person is not logged into Facebook, so we're not sure if
-    // they are logged into this app or not.
-    document.getElementById('status').innerHTML = 'Please log ' +
-      'into Facebook.';
-  }
-}
-
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-
-window.fbAsyncInit = function() {
-FB.init({
-  appId      : '827228793985134',
-  cookie     : true,  // enable cookies to allow the server to access 
-                      // the session
-  xfbml      : true,  // parse social plugins on this page
-  version    : 'v2.5' // use graph api version 2.5
-});
-
-// Now that we've initialized the JavaScript SDK, we call 
-// FB.getLoginStatus().  This function gets the state of the
-// person visiting this page and can return one of three states to
-// the callback you provide.  They can be:
-//
-// 1. Logged into your app ('connected')
-// 2. Logged into Facebook, but not your app ('not_authorized')
-// 3. Not logged into Facebook and can't tell if they are logged into
-//    your app or not.
-//
-// These three cases are handled in the callback function.
-
-FB.getLoginStatus(function(response) {
-  statusChangeCallback(response);
-});
-
-};
-
-// Load the SDK asynchronously
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-// Here we run a very simple test of the Graph API after login is
-// successful.  See statusChangeCallback() for when this call is made.
-function testAPI() {
-  console.log('Welcome!  Fetching your information.... ');
-  FB.api('/me', function(response) {
-    console.log('Successful login for: ' + response.name);
-    document.getElementById('status').innerHTML =
-      'Thanks for logging in, ' + response.name + '!';
-  });
-  
-}
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 
-</script>
+ 	
+
 
 
 </head>
 
 <body>
 <form action="/member/loginPost" method="post">
+
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -149,11 +69,14 @@ function testAPI() {
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                                
+                              	
+                              	
                                <button type="button" class="btn btn-lg btn-primary btn-block"  onlogin="checkLoginState();"  >Facebook Login</button>
                                <div id="status">
 								</div>
-                               
-                               
+                               	
+                               	<a id="fb-auth" title="페이스북 아이디로 로그인" href="javascript:;">로그인 버튼</a>
                           
                                  <button type="button" class="btn btn-lg btn-danger btn-block"  onclick="" >Google Login</button>
                                  
@@ -169,7 +92,12 @@ function testAPI() {
             </div>
         </div>
     </div>
+
 </form>
+	
+
+
+	
     <!-- jQuery -->
     <script src="/resources/vendor/jquery/jquery.min.js"></script>
 
@@ -183,5 +111,85 @@ function testAPI() {
     <script src="/resources/dist/js/sb-admin-2.js"></script>
 
 </body>
+
+<script type="text/javascript">
+
+ 
+window.fbAsyncInit = function(){
+    FB.init({ appId: '827228793985134', 
+        status: true, 
+        cookie: true,
+        xfbml: true,
+        oauth: true});
+}
+ 
+function updateButton(response) {
+    var button = document.getElementById('fb-auth');
+     
+    if (response.authResponse) {
+       
+      FB.api('/me', function(response) {
+        if(confirm('facebookID:'+response.email+' 로 로그인하시겠습니까?')==true){
+        // 확인을 선택했을 경우의 처리. 이 예제에서는 페이스북으로부터 넘겨받은 값들을 post로 다른 페이지에 전달하고 있음. form 생성 및 서브밋은 jquery로..
+                                                                var $form = $('<form></form>');
+                $form.attr('action', 'http://localhost:8080/index');
+                /* $form.attr('method', 'post'); */
+                $form.attr('target', 'ifrm');  // 타겟은 임의로 지정함
+                $form.appendTo('body');
+                 
+                var fuid = $('<input type="hidden" value="'+response.email+'" name="fuid">');
+                var fname = $('<input type="hidden" value="'+response.name+'" name="fname">');
+                var fsex = $('<input type="hidden" value="'+response.sex+'" name="fsex">');
+                var ffirst_name = $('<input type="hidden" value="'+response.first_name+'" name="ffirst_name">');
+                var flast_name = $('<input type="hidden" value="'+response.last_name+'" name="flast_name">');
+                var flocale = $('<input type="hidden" value="'+response.locale+'" name="flocale">');
+                var fbirthday = $('<input type="hidden" value="'+response.birthday+'" name="fbirthday">');
+                 
+                 console.log(fuid);
+                console.log(fsex);
+                console.log(flocale);
+                console.log($form); 
+                
+                
+                
+                $form.append(fuid).append(fname).append(fsex).append(ffirst_name).append(flast_name).append(flocale).append(fbirthday);
+                $form.submit();
+          }else{
+        // 취소를 선택했을 경우의 처리(아래는 페이스북 로그아웃 처리)
+                                                  FB.logout(function(response) {
+                     
+              });
+          }
+      });
+       
+       
+    } else {
+         FB.login(function(response) {
+            if (response.authResponse) {
+                FB.api('/me', function(response) {
+                 
+                });    
+            } else {
+                 
+            }
+        }, {scope:'email'});    
+    }
+  }
+ 
+document.getElementById('fb-auth').onclick = function() {
+     
+    FB.Event.subscribe('auth.statusChange', updateButton);  
+    FB.getLoginStatus(updateButton);
+};
+     
+(function() {
+  var e = document.createElement('script'); e.async = true;
+  e.src = document.location.protocol 
+    + '//connect.facebook.net/ko_KR/all.js';
+  document.getElementById('fb-root').appendChild(e);
+}());
+ 
+</script>
+	
 
 </html>

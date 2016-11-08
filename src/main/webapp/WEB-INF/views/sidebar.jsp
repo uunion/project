@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+ <!DOCTYPE html">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,10 +32,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>게시판<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/flot">공지사항</a>
+                                    <a href="/notice/list">공지사항</a>
                                 </li>
                                 <li>
-                                    <a href="/qna">QA</a>
+                                    <a href="/Qboard/listAll">QA</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -68,6 +70,15 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        
+                        
+                        
+                          <c:if test="${login.admin == 1 }">
+                          <li>
+                            <a href="/admin/memberList"><i class="fa fa-edit fa-fw"></i> 관리자메뉴</a>
+                        </li>
+                          </c:if>
+                        
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> 추가메뉴<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

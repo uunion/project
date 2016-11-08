@@ -13,6 +13,9 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -135,6 +138,7 @@
 			<version>5.1.35</version>
 		</dependency>
 		
+		
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -202,12 +206,19 @@
         <version>1.0.3.RELEASE</version>
 		</dependency>	
 		
-		  <dependency>
-        <groupId>javax.mail</groupId>
-        <artifactId>mail</artifactId>
-        <version>1.4</version>
-    </dependency>
-    
+			<dependency>
+ 		<groupId>javax.mail</groupId>
+ 		<artifactId>mail</artifactId>
+		 <version>1.4.7</version>
+		</dependency>
+
+
+	
+	<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>3.2.8.RELEASE</version>
+</dependency>
     
 	</dependencies>
     <build>

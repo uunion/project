@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"HTTP://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.kedu.project.mapper">
+<!-- 공통부분 -->
+	<sql id ="search">	
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and qname like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and qcontent like CONCAT('%', #{keyword}, '%')
+			</if> 
+			<if test="searchType == 'w'.toString()">
+				and qwriter like CONCAT('%', #{keyword}, '%')
+			</if> 
+			<if test="searchType == 'tc'.toString()">
+				and (qname like CONCAT('%', #{keyword}, '%')
+				OR qcontent like CONCAT('%', #{keyword}, '%'))
+			</if> 
+			<if test="searchType == 'cw'.toString()">
+				and (qcontent like CONCAT('%', #{keyword}, '%')
+				OR qwriter like CONCAT('%', #{keyword}, '%'))
+			</if> 
+			<if test="searchType == 'tcw'.toString()">
+				and (qname like CONCAT('%', #{keyword}, '%')
+				OR qcontent like CONCAT('%', #{keyword}, '%')
+				OR qwriter like CONCAT('%', #{keyword}, '%'))
+			</if> 
+		</if>
+	</sql>
+<!-- 하나 등록 -->
+	<insert id="create">
+		insert into qboard(qname, qcontent, qwriter)
+		values(#{qname},#{qcontent},#{qwriter})
+	</insert>
+<!-- 하나 읽어오기 -->
+	<select id="read" resultType="QboardDto">
+		select 
+			qbno, qname, qcontent, qwriter, qregdate, qviewcnt, qreplycnt 
+		from
+			qboard
+		where qbno = #{qbno}
+	</select>
+<!-- 하나 수정 -->
+	<update id="update">
+		update qboard set 
+			qname = #{qname} ,
+			qcontent = #{qcontent} 
+		where qbno = #{qbno}
+	</update>
+<!-- 하나 삭제 -->	
+	<delete id="delete">
+		delete from qboard where qbno = #{qbno}
+	</delete>
+<!-- 전체 리스트 -->
+	<select id="listAll" resultType="QboardDto">
+		<![CDATA[
+			select
+				qbno, qname, qcontent, qwriter, qregdate, qviewcnt, qreplycnt
+			from
+				qboard
+			where qbno > 0
+			order by qbno desc , qregdate desc
+		]]>
+	</select>
+<!-- 페이징 셀렉트 -->
+	<select id="listPage" resultType="QboardDto">
+		<![CDATA[
+			select
+				qbno, qname, qcontent, qwriter, qregdate, qviewcnt, qreplycnt
+			from
+				qboard
+			where qbno > 0
+			order by qbno desc , qregdate desc
+			limit #{page} , 10
+		]]>
+	</select>
+<!-- PageMap이용 -->	
+	<select id="listPageMap" resultType="QboardDto">
+		<![CDATA[
+			select
+				qbno, qname, qcontent, qwriter, qregdate, qviewcnt, qreplycnt
+			from
+				qboard
+			where qbno > 0
+			order by qbno desc , qregdate desc
+			limit #{page} , #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+			select
+				count(qbno)
+			from
+				qboard
+			where qbno > 0
+		]]>
+	</select>
+	
+	<select id="listSearch" resultType="QboardDto">
+		<![CDATA[
+			select *
+			from Qboard
+			where qbno > 0
+		]]>
+			<include refid="search"></include>
+		<![CDATA[
+			order by qbno desc
+			limit #{pageStart} , #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[
+			select count(qbno)
+			from Qboard
+			where qbno > 0
+		]]>
+			<include refid="search"></include>
+	</select>
+	
+	<update id="upReplyCnt">
+		update Qboard set qreplycnt = qreplycnt +#{upcount} where qbno = #{qbno}
+	</update>
+	
+	<update id="upQviewCnt">
+		update Qboard set qviewcnt = qviewcnt +1 where qbno = #{qbno}
+	</update>
+	
+	<insert id="QaddAttach">
+		insert into attach(
+							afullName
+						  , qbno
+							)
+		values (
+				#{afullName}
+			  , (select max(qbno) from qboard)
+				)
+	</insert>
+	
+	<select id="QgetAttach" resultType="string">
+		select	afullName
+		from	attach
+		where	qbno = #{qbno}
+		order by aregdate
+	</select>
+	
+	<delete id="QdeleteAttach">
+		delete from attach
+		where qbno = #{qbno}
+	</delete>
+	
+	<insert id="QreplaceAttach">
+		insert into attach (
+							afullName
+						  , qbno
+							)
+		values (
+				#{afullName}
+			  , #{qbno}
+				)
+	</insert>
+	
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kedu.project.mapper.nreplyMapper">
+
+	<select id="list" resultType="com.kedu.project.dto.ReplyDto">
+		select	*
+		from	reply
+		where	nbno = #{nbno}
+		order by rno desc
+	</select>
+
+	<insert id="create">
+		insert into	reply (nbno, rcontent, rwriter)
+		values		(#{nbno}, #{rcontent}, #{rwriter})
+	</insert>
+	
+	<update id="update">
+		update	reply
+		set		rcontent = #{rcontent}
+		where	rno = #{rno}
+	</update>
+	
+	<delete id="delete">
+		delete from	reply
+		where	rno = #{rno}
+	</delete>
+	
+	<select id="listPage" resultType="com.kedu.project.dto.ReplyDto">
+		select	*
+		from	reply
+		where	nbno = #{nbno}
+		order by	rno desc
+		limit	#{cri.pageStart}
+			  , #{cri.perPageNum}
+	</select>
+	
+	<select id="count" resultType="int">
+		select	count(nbno)
+		from	reply
+		where	nbno = #{nbno}
+	</select>
+	
+	<select id="getNbno" resultType="int">
+		select	nbno
+		from	reply
+		where	rno = #{rno}
+	</select>
+
+</mapper>

@@ -23,13 +23,15 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void regist(NoticeDto notice) throws Exception {
 		dao.create(notice);
-		
+		System.out.println("notice ==================================");
 		String[] files = notice.getFiles();
 		
 		if(files == null) {	return;	}
 		
 		for(String fileName : files) {
+			System.out.println("=================" + notice.toString());
 			dao.addAttach(fileName);
+			System.out.println("nfileName ==================================");
 		}
 	}
 

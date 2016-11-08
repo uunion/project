@@ -37,5 +37,19 @@ public class MemberServiceImpl implements MemberService {
 	public  void join(MemberDto dto) throws Exception {
 		dao.join(dto);
 	}
-
+	
+	@Override
+	public MemberDto read(int mno) throws Exception {
+		return dao.read(mno);
+	}
+	
+	@Override
+	public void update(MemberDto dto) throws Exception {
+		dao.update(dto);
+	}
+	
+	@Override
+	public void delete(int mno) throws Exception {
+		dao.delete(mno);
+	}
 }

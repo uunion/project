@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.kedu.project.mapper.ReservationMapper">
+	<insert id="insert">
+		insert into reservation(rname,email,phone,rdate,rtime)
+		values(#{rname},#{email},#{phone},#{rdate},#{rtime})
+	</insert>
+	
+	<delete id="delete">
+		delete 
+		  from reservation 
+		 where rno = #{rno}
+	</delete>
+	<update id="update">
+		update  reservation 
+		   set  rname = #{rname}
+		   	 ,  email = #{email}
+		   	 ,  phone = #{phone}
+		   	 ,  rdate = #{rdate}
+		   	 ,  rtime = #{rtime}
+		 where    rno = #{rno} 
+	</update>
+	<select id="listAll" resultType="ReservationDto">
+		<![CDATA[
+			select *
+			  from reservation
+			 where rno > 0
+			 order by rno desc
+		]]>
+				
+	</select>
+	<select id="read" resultType="ReservationDto">
+		select *
+		  from reservation
+		 where rno = #{rno}
+	</select>
+	<select id="listPage" resultType="ReservationDto">
+		<![CDATA[
+		select *
+		  from reservation
+		 where rno > 0
+		 order by rno desc
+		 limit #{page}, 10
+		 
+		]]>
+	</select>
+	<select id="listPaging" resultType="ReservationDto">
+		<![CDATA[
+		select *
+		  from reservation
+		 where rno > 0
+		 order by rno desc
+		 limit #{pageStart}, #{perPageNum}
+		 
+		]]>
+	</select>
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+			select count(rno)
+			  from reservation
+			 where rno > 0
+		]]>
+	</select>
+</mapper>

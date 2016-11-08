@@ -10,6 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.project.dto.Criteria;
+
+
 import com.kedu.project.dto.ReplyDto;
 
 @Repository
@@ -17,7 +19,8 @@ public class ReplyDaoImpl implements ReplyDao {
 
 	@Inject
 	private SqlSession session;
-	private static String namespace = "com.kedu.project.mapper.NreplyMapper";
+	private static String namespace = "com.kedu.project.mapper.nreplyMapper";
+	
 	
 	@Override
 	public List<ReplyDto> list(Integer nbno) throws Exception {
@@ -35,8 +38,8 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 
 	@Override
-	public void delete(Integer rbno) throws Exception {
-		session.delete(namespace + ".delete", rbno);
+	public void delete(Integer rno) throws Exception {
+		session.delete(namespace + ".delete", rno);
 	}
 	
 	@Override
@@ -55,8 +58,8 @@ public class ReplyDaoImpl implements ReplyDao {
 	}
 	
 	@Override
-	public int getNbno(Integer rbno) throws Exception {
-		return session.selectOne(namespace + ".getNbno", rbno);
+	public int getNbno(Integer rno) throws Exception {
+		return session.selectOne(namespace + ".getNbno", rno);
 	}
-
+	
 }

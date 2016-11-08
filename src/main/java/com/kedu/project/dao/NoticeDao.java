@@ -8,7 +8,7 @@ import com.kedu.project.dto.SearchCriteria;
 
 public interface NoticeDao {
 	
-public void create(NoticeDto dto) throws Exception;
+	public void create(NoticeDto dto) throws Exception;
 	
 	public NoticeDto read(Integer bno) throws Exception;
 	
