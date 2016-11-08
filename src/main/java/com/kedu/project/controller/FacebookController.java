@@ -1,4 +1,4 @@
-package com.kedu.project.controller;
+/*package com.kedu.project.controller;
 
 import java.io.IOException;
 
@@ -31,14 +31,14 @@ public class FacebookController {
  
 	FacebookConnectionFactory connectionFactory; //facebook Connection Class
  
-	/**
+	*//**
 	 * facebook에서 accessToken을 받아 그 토큰을 가지고
 	 * 접속하여 사용자 정보를 얻어옴.
 	 * @param code
 	 * @param req
 	 * @param res
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(String code,HttpServletRequest req,HttpServletResponse res) {
 		//토큰을 받음.
@@ -61,12 +61,12 @@ public class FacebookController {
 		return "home";
 	}
  
-	/**
+	*//**
 	 * 페이스북과 연결.
 	 * @param req
 	 * @param res
 	 * @throws IOException
-	 */
+	 *//*
 	@RequestMapping(value = "/start", method = RequestMethod.GET)
 	public void fb(HttpServletRequest req,HttpServletResponse res) throws IOException {
 		//facebook이란 id로 연결객체 생성
@@ -85,4 +85,4 @@ public class FacebookController {
 		res.sendRedirect(authorizeUrl);
 	}
  
-}
+}*/

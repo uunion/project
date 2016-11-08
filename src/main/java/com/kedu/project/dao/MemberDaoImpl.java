@@ -1,5 +1,9 @@
 package com.kedu.project.dao;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +24,29 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberDto login(LoginDto dto) throws Exception {
 		
 		return session.selectOne(namespace +".login", dto);
+	}
+	
+	@Override
+	public void keepLogin(String memberid, String sessionId, Date next) {
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("memberid", memberid);
+		paramMap.put("sessionId", sessionId);
+		paramMap.put("next", next);
+		
+		session.update(namespace+".keepLogin", paramMap);
+	}
+	
+	@Override
+	public MemberDto checkUserWithSessionKey(String value) {
+		
+		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
+	}
+	
+	//가입
+	@Override 
+	public void join(MemberDto dto) throws Exception {
+		session.insert(namespace+".join", dto);
 	}
 
 }

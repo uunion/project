@@ -1,5 +1,6 @@
 package com.kedu.project.interceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,12 +28,21 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			
 			logger.info("new login success");
 			session.setAttribute(LOGIN, memberDto);
-//			response.sendRedirect("../index");
+			
+			//4장 자동로그인과 쿠키
+			if(request.getParameter("useCookie") != null) {
+				
+				logger.info("remember me.......");
+				Cookie loginCookie = new Cookie("loginCookie", session.getId());
+				loginCookie.setPath("/");
+				loginCookie.setMaxAge(60 * 60 * 24 * 7);
+				response.addCookie(loginCookie);
+			}
 			
 			Object dest = session.getAttribute("dest");
 			
-			response.sendRedirect(dest != null ? (String)dest:"/");
-		}
+			response.sendRedirect(dest != null ? (String)dest:"/index");
+		}else { response.sendRedirect("/member/login");}
 	}
 
 	@Override

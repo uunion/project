@@ -1,5 +1,7 @@
 package com.kedu.project.interceptor;
 
+import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,10 +9,17 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.WebUtils;
+
+import com.kedu.project.dto.MemberDto;
+import com.kedu.project.service.MemberService;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
+	
+	@Inject
+	private MemberService service;
 	
 	private void saveDest(HttpServletRequest req) {
 		
@@ -40,6 +49,21 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			logger.info("current user is not logined");
 			
 			saveDest(request);
+			
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			
+			if(loginCookie != null) {
+				
+				MemberDto memberDto = service.checkLoginBefore(loginCookie.getValue());
+				
+				logger.info("MEMBERDTO: " + memberDto);
+				
+				if(memberDto != null) {
+					session.setAttribute("login", memberDto);
+					return true;
+				}
+			}
+			
 			
 			response.sendRedirect("/member/login");
 			return false;

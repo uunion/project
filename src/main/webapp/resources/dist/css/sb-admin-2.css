@@ -123,6 +123,11 @@ body {
 .btn-success.btn-outline {
   color: #5cb85c;
 }
+
+.btn-google.btn-outline {
+  color: #ff0000;
+}
+
 .btn-info.btn-outline {
   color: #5bc0de;
 }

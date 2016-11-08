@@ -4,7 +4,7 @@ public class LoginDto {
 
 	private String memberid;
 	private String pwd;
-	private String useCookie;
+	private boolean useCookie;
 	
 	public String getMemberid() {
 		return memberid;
@@ -18,10 +18,11 @@ public class LoginDto {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public String getUseCookie() {
+
+	public boolean isUseCookie() {
 		return useCookie;
 	}
-	public void setUseCookie(String useCookie) {
+	public void setUseCookie(boolean useCookie) {
 		this.useCookie = useCookie;
 	}
 	@Override

@@ -54,11 +54,11 @@
 			<mapping path="/member/loginPost"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
-		
+		<!-- 
 		<interceptor>
 			<mapping path="/index"/>
 			<beans:ref bean="authInterceptor"/>
-		</interceptor>
+		</interceptor> -->
 		
 	</interceptors>
 
