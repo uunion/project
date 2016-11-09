@@ -94,17 +94,17 @@
                     <!-- list -->
                     <div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">LIST ALL PAGE</h3>
+						<h3 class="box-title">LIST</h3> 
 					</div>
 					
 					<!-- 글작성 -->
 					<table class="table table-striped">
 						<tr>
-							<th style="width: 10px">NBNO</th>
-							<th>NNAME</th>
-							<th>NWRITER</th>
-							<th>NREGDATE</th>
-							<th style="width: 40px">NVIEWCNT</th>
+							<th>글번호</th>
+							<th>제목</th>
+							<th>글쓴이</th>
+							<th>등록일</th>
+							<th>조회수</th>
 						</tr>
 						
 						<c:forEach items="${list}" var="noticeDto">

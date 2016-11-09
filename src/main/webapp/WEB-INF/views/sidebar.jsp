@@ -35,7 +35,7 @@
                                     <a href="/notice/list">공지사항</a>
                                 </li>
                                 <li>
-                                    <a href="/Qboard/listAll">QA</a>
+                                    <a href="/Qboard/listPageMap">질문게시판</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -43,31 +43,25 @@
                         <li>
                             <a href="/search"><i class="fa fa-table fa-fw"></i>검색</a>
                         </li>
-                        <li>
-                            <a href="/map"><i class="fa fa-edit fa-fw"></i> 예약</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>지도<span class="fa arrow"></span></a>
+                        
+                         <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i>예약<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/panels-wells">Panels and Wells</a>
+                                    <a href="/reservation/register">예약</a>
                                 </li>
                                 <li>
-                                    <a href="/buttons">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="/notifications">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="/typography">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="/icons"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="/grid">Grid</a>
+                                    <a href="/reservation/reservationListAll">예약리스트</a>
                                 </li>
                             </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
+                        
+                       
+                        <li>
+                            <a href="/reservation/map"><i class="fa fa-wrench fa-fw"></i>지도<span class="fa arrow"></span></a>
+                            
                             <!-- /.nav-second-level -->
                         </li>
                         
@@ -79,48 +73,8 @@
                         </li>
                           </c:if>
                         
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> 추가메뉴<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> 추가메뉴2<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/blank">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="/login">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+               
+                       
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
